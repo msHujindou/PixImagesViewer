@@ -34,13 +34,13 @@ namespace PixImagesViewer
         private void open_rgbd_wnd(object sender, RoutedEventArgs e)
         {
             var wnd = new rgbd_wind();
-            wnd.Show();
+            wnd.ShowDialog();
         }
 
         private void open_abnormals_wnd(object sender, RoutedEventArgs e)
         {
-            var wnd = new abnormals_wind();
-            wnd.Show();
+            //var wnd = new abnormals_wind();
+            //wnd.Show();
         }
     }
 }

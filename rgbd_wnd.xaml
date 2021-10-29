@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PixImagesViewer"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        MouseDoubleClick="view_next"
+        Closing="Window_Closing"
         WindowState="Maximized"
         Title="rgbd_wind" Height="450" Width="800">
     <Grid>
@@ -13,11 +16,58 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Image x:Name="img_depth"
-               Grid.Column="0" />
-        <Image x:Name="img_base"
-               Grid.Column="1" />
-        <Image x:Name="img_mat"
-               Grid.Column="2" />
+        <Grid.ContextMenu>
+            <ContextMenu StaysOpen="true">
+                <MenuItem Header="Goto Previous"
+                          Click="goto_previous" />
+                <MenuItem Header="Goto Next" />
+            </ContextMenu>
+        </Grid.ContextMenu>
+        <Border BorderThickness="2"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                BorderBrush="Blue">
+            <Image x:Name="img_depth" />
+        </Border>
+
+        <Border BorderThickness="2"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                BorderBrush="Blue">
+            <Image x:Name="img_base" />
+        </Border>
+
+        <Border BorderThickness="2"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                BorderBrush="Blue">
+            <Image x:Name="img_matte" />
+        </Border>
+
+        <StackPanel Grid.ColumnSpan="3"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Background="#AAFFFFFF"
+                    Orientation="Vertical">
+            <RadioButton x:Name="r1"
+                         FontSize="22"
+                         VerticalContentAlignment="Center"
+                         Content="single dominant full body people"
+                         Checked="set_judge" />
+            <RadioButton x:Name="r2"
+                         FontSize="22"
+                         VerticalContentAlignment="Center"
+                         Content="single dominant half body people"
+                         Checked="set_judge" />
+            <RadioButton x:Name="r3"
+                         FontSize="22"
+                         VerticalContentAlignment="Center"
+                         Content="neither"
+                         Checked="set_judge" />
+        </StackPanel>
+
     </Grid>
 </Window>
