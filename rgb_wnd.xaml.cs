@@ -75,6 +75,18 @@ namespace PixImagesViewer
         {
             try
             {
+                List<normal_rgb> tmpres = null;
+                try
+                {
+                    string fileName = "normal_rgb.json";
+                    string jsonString = File.ReadAllText(fileName);
+                    tmpres = JsonSerializer.Deserialize<List<normal_rgb>>(jsonString);
+                }
+                catch
+                {
+
+                }
+
                 var folders = Directory.GetDirectories("normal_rgb");
                 foreach (var f in folders)
                 {
@@ -92,9 +104,10 @@ namespace PixImagesViewer
                             tmp.base_name = tmpf;
                         }
                     }
+                    var tmpjd = tmpres?.FirstOrDefault(r => r.folder == tmp.folder && r.base_name == tmp.base_name);
+                    tmp.judge = tmpjd?.judge;
                     lst.Add(tmp);
                 }
-                Console.WriteLine(folders);
             }
             catch
             {
@@ -138,9 +151,13 @@ namespace PixImagesViewer
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            string fileName = "normal_rgb.json";
-            string jsonString = JsonSerializer.Serialize(lst);
-            File.WriteAllText(fileName, jsonString);
+            MessageBoxResult messageBoxResult = MessageBox.Show("请问您是否要保存刚刚标注的信息到 normal_rgb.json , 如果此文件已经存在 , 会覆盖掉它。", "退出前是否保存标注文件", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                string fileName = "normal_rgb.json";
+                string jsonString = JsonSerializer.Serialize(lst);
+                File.WriteAllText(fileName, jsonString);
+            }
         }
 
         private void set_judge(object sender, RoutedEventArgs e)
