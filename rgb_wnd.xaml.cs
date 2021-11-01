@@ -55,8 +55,8 @@ namespace PixImagesViewer
                 {
                     r3.IsChecked = false;
                 }
-                this.img_base.Source = new BitmapImage(new Uri("C:\\Users\\Admin\\Desktop\\pysrcs\\piximage\\" + lst[current_idx].base_name));
-                this.img_seg.Source = new BitmapImage(new Uri("C:\\Users\\Admin\\Desktop\\pysrcs\\piximage\\" + lst[current_idx].seg_name));
+                this.img_base.Source = new BitmapImage(new Uri(new DirectoryInfo(lst[current_idx].base_name).FullName));
+                this.img_seg.Source = new BitmapImage(new Uri(new DirectoryInfo(lst[current_idx].seg_name).FullName));
             }
         }
 
@@ -144,8 +144,8 @@ namespace PixImagesViewer
                 {
                     r3.IsChecked = false;
                 }
-                this.img_base.Source = new BitmapImage(new Uri("C:\\Users\\Admin\\Desktop\\pysrcs\\piximage\\" + lst[current_idx].base_name));
-                this.img_seg.Source = new BitmapImage(new Uri("C:\\Users\\Admin\\Desktop\\pysrcs\\piximage\\" + lst[current_idx].seg_name));
+                this.img_base.Source = new BitmapImage(new Uri(new DirectoryInfo(lst[current_idx].base_name).FullName));
+                this.img_seg.Source = new BitmapImage(new Uri(new DirectoryInfo(lst[current_idx].seg_name).FullName));
             }
         }
 
